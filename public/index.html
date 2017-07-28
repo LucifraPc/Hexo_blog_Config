@@ -166,6 +166,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue0728" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/28/vue0728/">Vue 单文件模板</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/28/vue0728/" class="archive-article-date">
+  	<time datetime="2017-07-27T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Vue开发项目时，基本都是以单文件组件的形式开发组件的，这种方式好处多多：</p>
+<p>1.代码集中，便于开发、管理和维护</p>
+<p>2.可复用性高，直接将vue文件拷贝到新项目中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ChildComponents</span>&gt;</span><span class="tag">&lt;/<span class="name">ChildComponents</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"> &lt;script&gt;</div><div class="line"> <span class="comment">//子组件要提前引入，才可使用</span></div><div class="line"> <span class="keyword">import</span> ChildComponents <span class="keyword">from</span> <span class="string">'./ChildComponents.vue'</span></div><div class="line"> <span class="comment">//也可引入一些公共Js脚本或类库</span></div><div class="line"> <span class="keyword">import</span> Cookie <span class="keyword">from</span> <span class="string">'../lib/cookie.js'</span></div><div class="line"> </div><div class="line"><span class="comment">//Js部分尽量采用ES6语法，webpack babel插件会转义兼容</span></div><div class="line"> <span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">   <span class="comment">//组件私有数据（必须是function，而且要return对象类型）</span></div><div class="line">   data () &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">       <span class="attr">title</span>: <span class="string">'组件标题'</span>,</div><div class="line">       <span class="attr">firstName</span>: <span class="string">''</span>,</div><div class="line">       <span class="attr">lastName</span>: <span class="string">''</span>,</div><div class="line">     &#125;</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//父组件传递过来的数据（两种方式声明：1.数组 2.对象）</span></div><div class="line">   <span class="comment">//数组方式</span></div><div class="line">   props: [<span class="string">'age'</span>],</div><div class="line">   <span class="comment">//对象方式</span></div><div class="line">   <span class="comment">/*props: &#123;</span></div><div class="line">    age: &#123;</div><div class="line">       type: Number,</div><div class="line">       default: 0,</div><div class="line">       required: true,</div><div class="line">       validator: function (value) &#123;</div><div class="line">         return value &gt;= 0</div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">   &#125;*/</div><div class="line">   <span class="comment">//计算属性</span></div><div class="line">   computed: &#123;</div><div class="line">     fullName () &#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="keyword">this</span>.lastName</div><div class="line">     &#125;</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//监听</span></div><div class="line">   watch: &#123;</div><div class="line">     title (preVal, newVal) &#123;</div><div class="line">         <span class="built_in">console</span>.log(<span class="string">`改变之前的值：<span class="subst">$&#123;preVal&#125;</span>；改变之后的值：<span class="subst">$&#123;newVal&#125;</span>`</span>)</div><div class="line">     &#125;</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//函数集，自己封装，便于开发使用</span></div><div class="line">   methods: &#123;</div><div class="line">     getCurrentDate () &#123;</div><div class="line">       <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleDateString()</div><div class="line">     &#125;</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//生命周期钩子：实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用</span></div><div class="line">   beforeCreated () &#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'component before created'</span>)</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//生命周期钩子：组件实例完成创建之后调用</span></div><div class="line">   created () &#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'component created'</span>)</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//生命周期钩子：组件实例渲染完成时调用</span></div><div class="line">   mounted () &#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">'component mounted'</span>)</div><div class="line">   &#125;,</div><div class="line">   <span class="comment">//要用到哪些子组件（如果组件已是最小粒度，那么可省略该属性）</span></div><div class="line">   components: &#123;</div><div class="line">     ChildComponents   &#125;</div><div class="line"> &#125;</div><div class="line"> &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+ <style lang="scss" scoped>
+ /**使用scss编写样式，既可提高开发效率，也方便维护
+ *  scoped省略后，该样式片段会应用到页面全局
+ *  支持import语法引入css文件
+ */
+ @import "../base/reset.css";
+ div {
+   h1 {
+     color: #c23a3f;
+   }
+ }
+ </style>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">黑魔法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">奇淫技巧</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/28/vue0728/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-JavaScript从创建对象到继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1086,6 +1182,10 @@ var demo1=new Vue({
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">奇淫技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
